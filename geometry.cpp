@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <math.h>
  
  
 using namespace std;
@@ -12,9 +13,9 @@ const double PI = 3.141592653589793238463;
 // Нормализация входных данных: замена заглавных букв на строчные
 void normalization(string& command)
 { 
-    for (auto& c : command) {
-        if (isupper(c)) {
-            c = tolower(c);
+  for (unsigned int i = 0; i < command.size(); i++) {
+        if (isupper(command[i])) {
+            command[i] = tolower(command[i]);
         }
     }
 }
@@ -25,7 +26,7 @@ vector<string> splitting(string& command)
     vector<string> details;
  
     string detail = "";
-    for (int i = 0; i <= command.size(); i++) {
+    for (unsigned int i = 0; i <= command.size(); i++) {
         if ((command[i] == ' ') || (command[i] == '(') || (command[i] == ',') || (command[i] == ')') || (command[i] == '\0')) {
             if (detail.size() != 0) {
                 details.push_back(detail);
@@ -54,7 +55,7 @@ vector<string> splitting(string& command)
 // Парсер числа: переводит строку в число и проверяет на отсутствие лишних символов
 bool numberParser(string& strNumber, double& number)
 {
-    for (int countPoint = 0, i = 0; i < strNumber.size(); i++) {
+  for (unsigned int countPoint = 0, i = 0; i < strNumber.size(); i++) {
         // Функция atof() использует ',' для отделения дробной части числа от целой, поэтому заменяем '.' на ','
         if (strNumber[i] == '.') {
             if (++countPoint > 1) {
@@ -117,9 +118,9 @@ void circleParser(vector<string>& details)
     // Проверка на отсутствие лишних токенов после ')' (закрывающейся скобки)
     if (details.size() > 7) {
         cout << "Ошибка: " << endl;
-        for (int i = 7; i < details.size(); i++) {
+        for (unsigned int i = 7; i < details.size(); i++) {
             cout << "\"" << details[i] << "\"";
-            if (i + 1 != details.size()) {  // Если не последний элемент, то выводим запятую
+            if ((int)(i + 1) !=(int)details.size()) {  // Если не последний элемент, то выводим запятую
                 cout << ", ";
             }
         }
@@ -208,9 +209,9 @@ void triangleParser(vector<string>& details)
     // Проверка на отсутствие лишних токенов после ')' (закрывающейся скобки)
     if (details.size() > 13) {
         cout << "Ошибка: " << endl;
-        for (int i = 13; i < details.size(); i++) {
+        for (unsigned int i = 13; i < details.size(); i++) {
             cout << "\"" << details[i] << "\"";
-            if (i + 1 != details.size()) {  // Если не последний элемент, то выводим запятую
+            if ((int)(i + 1) != (int)details.size()) {  // Если не последний элемент, то выводим запятую
                 cout << ", ";
             }
         }
