@@ -3,3 +3,6 @@
 *.d
 *.a
 *.cpp~
+*bin/geometry
+*bin/.nfs0000000000ba6f5c00000046
+*bin/.nfs0000000000ba6fcf00000019
