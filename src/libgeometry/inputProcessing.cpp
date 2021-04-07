@@ -1,11 +1,9 @@
-#include <iostream>
 #include "inputProcessing.h"
 #include "infoOutput.h"
-
+#include <iostream>
 
 using std::cout;
 using std::endl;
-
 
 void processing(string command)
 {
@@ -28,22 +26,20 @@ vector<string> splitting(string& command)
 
     string detail = "";
     for (unsigned int i = 0; i <= command.size(); i++) {
-        if ((command[i] == ' ') || (command[i] == '(') || (command[i] == ',') || (command[i] == ')') || (command[i] == '\0')) {
+        if ((command[i] == ' ') || (command[i] == '(') || (command[i] == ',')
+            || (command[i] == ')') || (command[i] == '\0')) {
             if (detail.size() != 0) {
                 details.push_back(detail);
                 detail = "";
             }
             if (command[i] == '(') {
                 details.push_back("(");
-            }
-            else if (command[i] == ',') {
+            } else if (command[i] == ',') {
                 details.push_back(",");
-            }
-            else if (command[i] == ')') {
+            } else if (command[i] == ')') {
                 details.push_back(")");
             }
-        }
-        else {
+        } else {
             if (command[i] != ' ') {
                 detail += command[i];
             }
@@ -60,12 +56,11 @@ bool numberParser(string& strNumber, double& number)
                 return false;
             }
             strNumber[i] = ',';
-        }
-        else if ((strNumber[i] != '-') && (not isdigit(strNumber[i]))) { 
+        } else if ((strNumber[i] != '-') && (not isdigit(strNumber[i]))) {
             return false;
         }
     }
-    number = atof(strNumber.c_str()); 
+    number = atof(strNumber.c_str());
 
     return true;
 }
@@ -77,19 +72,16 @@ void parser(vector<string>& details)
             double x, y, radius;
             circleParser(details, x, y, radius);
             circleInfo(x, y, radius);
-        }
-        else if (details[0] == "triangle") {
+        } else if (details[0] == "triangle") {
             double x1, y1;
             double x2, y2;
             double x3, y3;
             triangleParser(details, x1, y1, x2, y2, x3, y3);
             triangleInfo(x1, y1, x2, y2, x3, y3);
-        }
-        else {
+        } else {
             cout << "Ошибка: неизвестная фигура." << endl;
         }
-    }
-    else {
+    } else {
         cout << "Ошибка: пустая строка." << endl;
     }
 }
@@ -126,7 +118,7 @@ void circleParser(vector<string>& details, double& x, double& y, double& radius)
         cout << "Ошибка: " << endl;
         for (unsigned int i = 7; i < details.size(); i++) {
             cout << "\"" << details[i] << "\"";
-            if ((int)(i + 1) != (int)details.size()) { 
+            if ((int)(i + 1) != (int)details.size()) {
                 cout << ", ";
             }
         }
@@ -134,7 +126,14 @@ void circleParser(vector<string>& details, double& x, double& y, double& radius)
         return;
     }
 }
-void triangleParser(vector<string>& details, double& x1, double& y1, double& x2, double& y2, double& x3, double& y3)
+void triangleParser(
+        vector<string>& details,
+        double& x1,
+        double& y1,
+        double& x2,
+        double& y2,
+        double& x3,
+        double& y3)
 {
     if ((details.size() < 2) || (details[1] != "(")) {
         cout << "Ошибка: не найдена открывающаяся скобка \'(\'." << endl;
