@@ -79,7 +79,7 @@ void parser(vector<string>& details)
             triangleParser(details, x1, y1, x2, y2, x3, y3);
             triangleInfo(x1, y1, x2, y2, x3, y3);
         } else {
-            cout << "Ошибка: неизвестная фигура." << endl;
+            cout << "Ошибка:неизвестная фигура." << endl;
         }
     } else {
         cout << "Ошибка: пустая строка." << endl;
