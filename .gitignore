@@ -1,8 +1,34 @@
-*.o
-*.exe
+# Prerequisites
 *.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
 *.a
-*.cpp~
-*bin/geometry
-*bin/.nfs0000000000ba6f5c00000046
-*bin/.nfs0000000000ba6fcf00000019
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+.vs/

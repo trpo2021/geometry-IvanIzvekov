@@ -1,47 +1,23 @@
-APP_NAME = geometry
-LIB_NAME = libgeometry
+CXX=g++
+CFLAGS= -c -Wall -Werror
+LIBG = obj/src/libgeometry
+GEO = obj/src/geometry
 
-CC= g++
-CFLAGS = -Wall -Werror -Wextra
-CPPFLAGS = -I src -MP -MMD
-LDFLAGS =
-LDLIBS =
+bin/geometry.exe: $(GEO)/geometry.o $(LIBG)/infoOutput.o $(LIBG)/inputProcessing.o 
+	$(CXX) -I src -Wall -Werror -o bin/geometry.exe $(GEO)/geometry.o $(LIBG)/infoOutput.o $(LIBG)/inputProcessing.o
 
-BIN_DIR = bin
-OBJ_DIR = obj
-SRC_DIR = src
+$(LIBG)/infoOutput.o: src/libgeometry/infoOutput.cpp
+	$(CXX) -I src $(CFLAGS) -MMD -o $(LIBG)/infoOutput.o src/libgeometry/infoOutput.cpp
 
-APP_PATH = $(BIN_DIR)/$(APP_NAME)
-LIB_PATH = $(OBJ_DIR)/$(SRC_DIR)/$(LIB_NAME)/$(LIB_NAME).a
+$(LIBG)/inputProcessing.o: src/libgeometry/inputProcessing.cpp
+	$(CXX) -I src $(CFLAGS) -MMD -o $(LIBG)/inputProcessing.o src/libgeometry/inputProcessing.cpp
 
-SRC_EXT = cpp
+$(GEO)/geometry.o: src/geometry/geometry.cpp
+	$(CXX) -I src $(CFLAGS) -MMD -o $(GEO)/geometry.o src/geometry/geometry.cpp
 
-APP_SOURCES = $(shell find $(SRC_DIR)/$(APP_NAME) -name '*.$(SRC_EXT)')
-APP_OBJECTS = $(APP_SOURCES:$(SRC_DIR)/%.$(SRC_EXT)=$(OBJ_DIR)/$(SRC_DIR)/%.o)
-
-LIB_SOURCES = $(shell find $(SRC_DIR)/$(LIB_NAME) -name '*.$(SRC_EXT)')
-LIB_OBJECTS = $(LIB_SOURCES:$(SRC_DIR)/%$(SRC_EXT)=$(OBJ_DIR)/$(SRC_DIR)/%o)
-
-DEPS = $(APP_OBJECTS:.o=.d) $(LIB_OBJECTS:.o=.d)
-
-all: $(APP_PATH)
-
--include $(DEPS)
-
-$(APP_PATH): $(APP_OBJECTS) $(LIB_PATH)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ $^
-
-$(LIB_PATH): $(LIB_OBJECTS)
-	ar rcs $@ $^
-
-$(OBJ_DIR)/$(SRC_DIR)/$(APP_NAME)/%.o: $(SRC_DIR)/$(APP_NAME)/%.cpp
-	$(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $@
-
-$(OBJ_DIR)/$(SRC_DIR)/$(LIB_NAME)/%.o: $(SRC_DIR)/$(LIB_NAME)/%.cpp
-	$(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $@
+-include geometry.d inputProcessing.d infoOutput.d
 
 .PHONY: clean
-clean:
-	$(RM) $(APP_PATH) $(LIB_PATH)
-	find $(OBJ_DIR) -name '*.o' -exec $(RM) '{}' \;
-	find $(OBJ_DIR) -name '*.o' -exec $(RM) '{}' \;
+
+clean: 
+	rm -rf $(GEO)/*.o $(GEO)/*.d $(LIBG)/*.o $(LIBG)/*.d bin/*.exe
