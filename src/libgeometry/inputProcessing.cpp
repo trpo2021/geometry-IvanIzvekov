@@ -79,50 +79,50 @@ void parser(vector<string>& details)
             triangleParser(details, x1, y1, x2, y2, x3, y3);
             triangleInfo(x1, y1, x2, y2, x3, y3);
         } else {
-            cout << "Ошибка: неизвестная фигура." << endl;
+            cout << "Error neizvestnaya figura" << endl;
         }
     } else {
-        cout << "Ошибка: пустая строка." << endl;
+        cout << "Error pustaya stroka" << endl;
     }
 }
 void circleParser(vector<string>& details, double& x, double& y, double& radius)
 {
     if ((details.size() < 2) || (details[1] != "(")) {
-        cout << "Ошибка: не найдена открывающаяся скобка \'(\'." << endl;
+        cout << "Error ne naydena: \'(\'" << endl;
         return;
     }
     if ((details.size() > 2) && (!numberParser(details[2], x))) {
-        cout << "Ошибка: ожидалось число: координата X." << endl;
+        cout << "Error vvedite chislo: X." << endl;
         return;
     }
     if ((details.size() > 3) && (!numberParser(details[3], y))) {
-        cout << "Ошибка: ожидалось число: координата Y." << endl;
+        cout << "Error vvedite chislo: Y." << endl;
         return;
     }
     if ((details.size() < 5) || (details[4] != ",")) {
-        cout << "Ошибка: не найдена запятая \',\'." << endl;
+        cout << "Error ne naydena: \',\'." << endl;
         return;
     }
     if ((details.size() > 5) && (!numberParser(details[5], radius))) {
-        cout << "Ошибка: ожидалось число: raidus." << endl;
+        cout << "Error vvedite chislo: raidus." << endl;
         return;
     }
     if (radius < 0.0) {
-        cout << "Ошибка: радиус не может быть отрицательным.";
+        cout << "Error radius doljen bit pologitelnim";
     }
     if ((details.size() < 7) || (details[6] != ")")) {
-        cout << "Ошибка: не найдена закрывающаяся скобка \')\'." << endl;
+        cout << "Error ne naydena: \')\'." << endl;
         return;
     }
     if (details.size() > 7) {
-        cout << "Ошибка: " << endl;
+        cout << "Error: " << endl;
         for (unsigned int i = 7; i < details.size(); i++) {
             cout << "\"" << details[i] << "\"";
             if ((int)(i + 1) != (int)details.size()) {
                 cout << ", ";
             }
         }
-        cout << " - неизвестные токены." << endl;
+        cout << " - neizvestniy token" << endl;
         return;
     }
 }
@@ -136,62 +136,62 @@ void triangleParser(
         double& y3)
 {
     if ((details.size() < 2) || (details[1] != "(")) {
-        cout << "Ошибка: не найдена открывающаяся скобка \'(\'." << endl;
+        cout << "Error ne naydena: \'(\'." << endl;
         return;
     }
     if ((details.size() < 3) || (details[2] != "(")) {
-        cout << "Ошибка: не найдена открывающаяся скобка \'(\'." << endl;
+        cout << "Error ne naydena \'(\'." << endl;
         return;
     }
     if ((details.size() > 3) && (!numberParser(details[3], x1))) {
-        cout << "Ошибка: ожидалось число: координата X1." << endl;
+        cout << "Error vvedite chislo: X1." << endl;
         return;
     }
     if ((details.size() > 4) && (!numberParser(details[4], y1))) {
-        cout << "Ошибка: ожидалось число: координата Y1." << endl;
+        cout << "Error vvedite chislo: Y1." << endl;
         return;
     }
     if ((details.size() < 6) || (details[5] != ",")) {
-        cout << "Ошибка: не найдена запятая \',\'." << endl;
+        cout << "Error ne naydena: \',\'." << endl;
         return;
     }
     if ((details.size() > 6) && (!numberParser(details[6], x2))) {
-        cout << "Ошибка: ожидалось число: координата X2." << endl;
+        cout << "Error vvedite chislo: X2." << endl;
         return;
     }
     if ((details.size() > 7) && (!numberParser(details[7], y2))) {
-        cout << "Ошибка: ожидалось число: координата Y2." << endl;
+        cout << "Error vvedite chislo: Y2." << endl;
         return;
     }
     if ((details.size() < 9) || (details[8] != ",")) {
-        cout << "Ошибка: не найдена запятая \',\'." << endl;
+        cout << "Error ne naydena: \',\'." << endl;
         return;
     }
     if ((details.size() > 9) && (!numberParser(details[9], x3))) {
-        cout << "Ошибка: ожидалось число: координата X3." << endl;
+        cout << "Error vvedite chislo: X3." << endl;
         return;
     }
     if ((details.size() > 10) && (!numberParser(details[10], y3))) {
-        cout << "Ошибка: ожидалось число: координата Y3." << endl;
+        cout << "Error vvedite chislo: Y3." << endl;
         return;
     }
     if ((details.size() < 12) || (details[11] != ")")) {
-        cout << "Ошибка: не найдена закрывающаяся скобка \')\'." << endl;
+        cout << "Error ne naydena: \')\'." << endl;
         return;
     }
     if ((details.size() < 13) || (details[12] != ")")) {
-        cout << "Ошибка: не найдена закрывающаяся скобка \')\'." << endl;
+        cout << "Error ne naydena: \')\'." << endl;
         return;
     }
     if (details.size() > 13) {
-        cout << "Ошибка: " << endl;
+        cout << "Error: " << endl;
         for (unsigned int i = 13; i < details.size(); i++) {
             cout << "\"" << details[i] << "\"";
             if ((int)(i + 1) != (int)details.size()) {
                 cout << ", ";
             }
         }
-        cout << " - неизвестные токены." << endl;
+        cout << " - neizvestniy token" << endl;
         return;
     }
 }
