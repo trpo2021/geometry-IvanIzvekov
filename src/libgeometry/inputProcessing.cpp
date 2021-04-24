@@ -15,13 +15,14 @@ bool processing(vector<Circle>& circles, string command)
     return parser(circles, details);
 }
 // Нормализация входных данных: замена заглавных букв на строчные
-void normalization(string& command)
+int normalization(string& command)
 {
     for (unsigned int i = 0; i < command.size(); i++) {
         if (isupper(command[i])) {
             command[i] = tolower(command[i]);
         }
     }
+    return 0;
 }
 
 // Разбиение входных данных на части для упрощения обработки

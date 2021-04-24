@@ -9,7 +9,7 @@ using std::string;
 using std::vector;
 
 bool processing(vector<Circle>& circles, string command);
-void normalization(string& command);
+int normalization(string& command);
 
 vector<string> splitting(string& command);
 
