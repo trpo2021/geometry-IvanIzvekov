@@ -8,12 +8,11 @@
 using std::string;
 using std::vector;
 
-bool processing(vector<Circle>& circles, string command);
-int normalization(string& command);
+string normalization(string command);
 
-vector<string> splitting(string& command);
+vector<string> splitting(const string& command);
 
-bool numberParser(string& strNumber, double& number);
+bool numberParser(string strNumber, double& number);
 
-bool parser(vector<Circle>& circles, vector<string>& details);
+bool parser(vector<Circle>& circles, string command);
 bool circleParser(vector<string>& details, double& x, double& y, double& radius);

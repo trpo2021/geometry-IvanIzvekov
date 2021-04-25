@@ -7,26 +7,20 @@ using std::cout;
 using std::endl;
 
 
-bool processing(vector<Circle>& circles, string command)
-{
-    normalization(command);
 
-    vector<string> details = splitting(command);
-    return parser(circles, details);
-}
 // Нормализация входных данных: замена заглавных букв на строчные
-int normalization(string& command)
+string normalization(string command)
 {
     for (unsigned int i = 0; i < command.size(); i++) {
         if (isupper(command[i])) {
             command[i] = tolower(command[i]);
         }
     }
-    return 0;
+    return command;
 }
 
 // Разбиение входных данных на части для упрощения обработки
-vector<string> splitting(string& command)
+vector<string> splitting(const string& command)
 {
     vector<string> details;
 
@@ -58,15 +52,15 @@ vector<string> splitting(string& command)
 }
 
 // Парсер числа: переводит строку в число и проверяет на отсутствие лишних символов
-bool numberParser(string& strNumber, double& number)
+bool numberParser(string strNumber, double& number)
 {
+	number=0.0;
     for (unsigned int countPoint = 0, i = 0; i < strNumber.size(); i++) {
         // Функция atof() использует ',' для отделения дробной части числа от целой, поэтому заменяем '.' на ','
         if (strNumber[i] == '.') {
             if (++countPoint > 1) {
                 return false;
             }
-            strNumber[i] = ',';
         }
         else if ((strNumber[i] != '-') && (not isdigit(strNumber[i]))) {  // Проверка строки на отсутствие символов не являющихся цифрой
             return false;
@@ -77,8 +71,11 @@ bool numberParser(string& strNumber, double& number)
     return true;
 }
 
-bool parser(vector<Circle>& circles, vector<string>& details)
+bool parser(vector<Circle>& circles, string command)
 {
+	command=normalization(command);
+
+    vector<string> details = splitting(command);
     if (details.size() != 0) {
         // Проверка названия фигуры
         if (details[0] == "circle") {

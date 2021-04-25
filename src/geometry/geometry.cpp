@@ -3,7 +3,7 @@
 #include <cmath>
 #include "libgeometry/inputProcessing.h"
 #include "libgeometry/Circle.h"
-
+#include "libgeometry/infoOutput.h"
 
 using namespace std;
 
@@ -17,11 +17,10 @@ int main()
 	string input;
 	while (true) {
 		getline(cin, input, '\n');
-		if (processing(circles, input)) {
+		if (parser(circles,input)) {
 			cout << "Пересечения:" << endl;
-			Circle ncircle = circles.back();
                 for (unsigned int i = 0; i < circles.size() - 1; i++) {
-				if (circles[i].radius + ncircle.radius > sqrt(pow(circles[i].x - ncircle.x, 2) + pow(circles[i].y - ncircle.y, 2))) {
+				if (intersection(circles[i],circles.back())) {
 					cout << "  circle(" << circles[i].x << " " << circles[i].y << ", " << circles[i].radius << ")" << endl;
 				}
 			}
