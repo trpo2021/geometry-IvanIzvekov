@@ -1,7 +1,6 @@
-#include <iostream>
 #include "inputProcessing.h"
 #include "infoOutput.h"
-
+#include <iostream>
 
 using std::cout;
 using std::endl;

@@ -1,9 +1,9 @@
-#include <iostream>
-#include <vector>
-#include <cmath>
-#include "libgeometry/inputProcessing.h"
 #include "libgeometry/Circle.h"
 #include "libgeometry/infoOutput.h"
+#include "libgeometry/inputProcessing.h"
+#include <cmath>
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
