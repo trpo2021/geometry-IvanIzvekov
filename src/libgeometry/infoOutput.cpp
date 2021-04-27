@@ -1,7 +1,6 @@
 #include "infoOutput.h"
-#include <iostream>
 #include <cmath>
-
+#include <iostream>
 
 using std::cout;
 using std::endl;
