@@ -6,8 +6,6 @@ using std::cout;
 using std::endl;
 
 
-
-// Нормализация входных данных: замена заглавных букв на строчные
 string normalization(string command)
 {
     for (unsigned int i = 0; i < command.size(); i++) {
@@ -18,7 +16,6 @@ string normalization(string command)
     return command;
 }
 
-// Разбиение входных данных на части для упрощения обработки
 vector<string> splitting(const string& command)
 {
     vector<string> details;
@@ -50,22 +47,20 @@ vector<string> splitting(const string& command)
     return details;
 }
 
-// Парсер числа: переводит строку в число и проверяет на отсутствие лишних символов
 bool numberParser(string strNumber, double& number)
 {
 	number=0.0;
     for (unsigned int countPoint = 0, i = 0; i < strNumber.size(); i++) {
-        // Функция atof() использует ',' для отделения дробной части числа от целой, поэтому заменяем '.' на ','
         if (strNumber[i] == '.') {
             if (++countPoint > 1) {
                 return false;
             }
         }
-        else if ((strNumber[i] != '-') && (not isdigit(strNumber[i]))) {  // Проверка строки на отсутствие символов не являющихся цифрой
+        else if ((strNumber[i] != '-') && (not isdigit(strNumber[i]))) {
             return false;
         }
     }
-    number = atof(strNumber.c_str());   // Преобразование строки в число double
+    number = atof(strNumber.c_str());
 
     return true;
 }
@@ -76,7 +71,6 @@ bool parser(vector<Circle>& circles, string command)
 
     vector<string> details = splitting(command);
     if (details.size() != 0) {
-        // Проверка названия фигуры
         if (details[0] == "circle") {
             double x, y, radius;
             if (circleParser(details, x, y, radius)) {
@@ -88,66 +82,59 @@ bool parser(vector<Circle>& circles, string command)
             }
         }
         else {
-            cout << "Ошибка: неизвестная фигура." << endl;
+            cout << "Error:neizvestnaya figura" << endl;
         }
     }
     else {
-        cout << "Ошибка: пустая строка." << endl;
+        cout << "Error: pustaya stroka" << endl;
     }
 
     return false;
 }
 bool circleParser(vector<string>& details, double& x, double& y, double& radius)
 {
-    // Проверка наличия символа '(' (открывающейся скобки)
     if ((details.size() < 2) || (details[1] != "(")) {
-        cout << "Ошибка: не найдена открывающаяся скобка \'(\'." << endl;
+        cout << "Error: ne nayden: \'(\'." << endl;
         return false;
     }
 
-    // Проверка наличия аргумента - координаты X
     if ((details.size() > 2) && (!numberParser(details[2], x))) {
-        cout << "Ошибка: ожидалось число: координата X." << endl;
+        cout << "Error: ne nayden: X." << endl;
         return false;
     }
 
-    // Проверка наличия аргумента - координаты Y
     if ((details.size() > 3) && (!numberParser(details[3], y))) {
-        cout << "Ошибка: ожидалось число: координата Y." << endl;
+        cout << "Error: ne nayden: Y." << endl;
         return false;
     }
 
-    // Проверка наличия символа ',' (запятая отделяющая координаты от радиуса)
     if ((details.size() < 5) || (details[4] != ",")) {
-        cout << "Ошибка: не найдена запятая \',\'." << endl;
+        cout << "Error: ne nayden: \',\'." << endl;
         return false;
     }
 
-    // Проверка наличия аргумента - радиуса
     if ((details.size() > 5) && (!numberParser(details[5], radius))) {
-        cout << "Ошибка: ожидалось число: raidus." << endl;
+        cout << "Error: ne nayden: raidus." << endl;
         return false;
     }
     if (radius < 0.0) {
-        cout << "Ошибка: радиус не может быть отрицательным.";
+        cout << "Error: otrizatel. radius";
     }
 
-    // Проверка наличия символа ')' (закрывающейся скобки)
     if ((details.size() < 7) || (details[6] != ")")) {
-        cout << "Ошибка: не найдена закрывающаяся скобка \')\'." << endl;
+        cout << "Error: ne nayden: \')\'." << endl;
         return false;
     }
 
-    // Проверка на отсутствие лишних токенов после ')' (закрывающейся скобки)
     if (details.size() > 7) {
-        cout << "Ошибка: " << endl;
+        cout << "Error: " << endl;
         for (unsigned int i = 7; i < details.size(); i++) {
             cout << "\"" << details[i] << "\"";
-            if ((int)(i + 1) != (int)details.size()) {  // Если не последний элемент, то выводим запятую
+            if ((int)(i + 1) != (int)details.size()) {
                 cout << ", ";
             }
         }
-        cout << " - неизвестные токены." << endl;
+        cout << " - neizvestn. token" << endl;
         return false;
     }
 
