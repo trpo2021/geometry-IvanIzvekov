@@ -1,5 +1,5 @@
 #define CATCH_CONFIG_MAIN
-#include "catch.hpp"
+#include "thirdparty/catch.hpp"
 #include "libgeometry/Circle.h"
 #include "libgeometry/infoOutput.h"
 #include "libgeometry/inputProcessing.h"
