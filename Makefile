@@ -27,7 +27,7 @@ bin/test: $(LIBG)/inputProcessing.o obj/test/test.o $(LIBG)/infoOutput.o
 obj/test/test.o: test/test.cpp
 	$(CXX) -I src $(CFLAGS) -MMD -o obj/test/test.o test/test.cpp
 
--include geometry.d inputProcessing.d infoOutput.d Circle.d catch.d
+-include geometry.d inputProcessing.d infoOutput.d Circle.d ../thirdparty/catch.d
 
 .PHONY: clean
 
