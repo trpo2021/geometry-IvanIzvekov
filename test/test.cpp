@@ -19,16 +19,16 @@ TEST_CASE("check errors", "")
     vector<Circle> circles;
     SECTION("Errors")
     {
-        CHECK(parser(circles, "") == false);
-        CHECK(parser(circles, "ciraebtar (1 2,3)") == false);
-        CHECK(parser(circles, "circle 1 2,3)") == false);
-        CHECK(parser(circles, "circle ( 2,3)") == false);
-        CHECK(parser(circles, "circle (1 ,3)") == false);
-        CHECK(parser(circles, "circle (1 2,)") == false);
-        CHECK(parser(circles, "circle (1 2,3") == false);
-        CHECK(parser(circles, "circle (1 2 3)") == false);
-        CHECK(parser(circles, "circle (1 2, 3)1") == false);
-        CHECK(parser(circles, "circle ()") == false);
+        CHECK(parser(circles, "", false) == false);
+        CHECK(parser(circles, "ciraebtar (1 2,3)", false) == false);
+        CHECK(parser(circles, "circle 1 2,3)", false) == false);
+        CHECK(parser(circles, "circle ( 2,3)", false) == false);
+        CHECK(parser(circles, "circle (1 ,3)", false) == false);
+        CHECK(parser(circles, "circle (1 2,)", false) == false);
+        CHECK(parser(circles, "circle (1 2,3", false) == false);
+        CHECK(parser(circles, "circle (1 2 3)", false) == false);
+        CHECK(parser(circles, "circle (1 2, 3)1", false) == false);
+        CHECK(parser(circles, "circle ()", false) == false);
     }
 }
 TEST_CASE("parsernum.", "")
