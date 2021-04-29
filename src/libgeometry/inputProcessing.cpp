@@ -5,7 +5,6 @@
 using std::cout;
 using std::endl;
 
-
 string normalization(string command)
 {
     for (unsigned int i = 0; i < command.size(); i++) {
@@ -22,22 +21,20 @@ vector<string> splitting(const string& command)
 
     string detail = "";
     for (unsigned int i = 0; i <= command.size(); i++) {
-        if ((command[i] == ' ') || (command[i] == '(') || (command[i] == ',') || (command[i] == ')') || (command[i] == '\0')) {
+        if ((command[i] == ' ') || (command[i] == '(') || (command[i] == ',')
+            || (command[i] == ')') || (command[i] == '\0')) {
             if (detail.size() != 0) {
                 details.push_back(detail);
                 detail = "";
             }
             if (command[i] == '(') {
                 details.push_back("(");
-            }
-            else if (command[i] == ',') {
+            } else if (command[i] == ',') {
                 details.push_back(",");
-            }
-            else if (command[i] == ')') {
+            } else if (command[i] == ')') {
                 details.push_back(")");
             }
-        }
-        else {
+        } else {
             if (command[i] != ' ') {
                 detail += command[i];
             }
@@ -49,14 +46,13 @@ vector<string> splitting(const string& command)
 
 bool numberParser(string strNumber, double& number)
 {
-	number=0.0;
+    number = 0.0;
     for (unsigned int countPoint = 0, i = 0; i < strNumber.size(); i++) {
         if (strNumber[i] == '.') {
             if (++countPoint > 1) {
                 return false;
             }
-        }
-        else if ((strNumber[i] != '-') && (not isdigit(strNumber[i]))) {
+        } else if ((strNumber[i] != '-') && (not isdigit(strNumber[i]))) {
             return false;
         }
     }
@@ -67,7 +63,7 @@ bool numberParser(string strNumber, double& number)
 
 bool parser(vector<Circle>& circles, string command)
 {
-	command=normalization(command);
+    command = normalization(command);
 
     vector<string> details = splitting(command);
     if (details.size() != 0) {
@@ -80,12 +76,10 @@ bool parser(vector<Circle>& circles, string command)
 
                 return true;
             }
-        }
-        else {
+        } else {
             cout << "Error:neizvestnaya figura" << endl;
         }
-    }
-    else {
+    } else {
         cout << "Error: pustaya stroka" << endl;
     }
 
