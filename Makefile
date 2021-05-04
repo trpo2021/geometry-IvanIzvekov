@@ -18,13 +18,13 @@ $(GEO)/geometry.o: src/geometry/geometry.cpp
 	$(CXX) -I src $(CFLAGS) -MMD -o $(GEO)/geometry.o src/geometry/geometry.cpp
 
 
-test: bin/test
+test: bin/test.exe
 
-bin/test: $(LIBG)/inputProcessing.o obj/test/test.o $(LIBG)/infoOutput.o
+bin/test.exe: $(LIBG)/inputProcessing.o obj/test/test.o $(LIBG)/infoOutput.o
 	$(CXX) -I src -Wall -Werror -o bin/test $(LIBG)/inputProcessing.o obj/test/test.o $(LIBG)/infoOutput.o
 
 obj/test/test.o: test/test.cpp
-	$(CXX) -I src $(CFLAGS) -MMD -o obj/test/test.o test/test.cpp
+	$(CXX) -I src -I thirdparty $(CFLAGS) -MMD -o obj/test/test.o test/test.cpp
 
 .PHONY: clean
 

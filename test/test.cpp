@@ -1,8 +1,8 @@
 #define CATCH_CONFIG_MAIN
-#include "catch.hpp"
 #include "libgeometry/Circle.h"
 #include "libgeometry/infoOutput.h"
 #include "libgeometry/inputProcessing.h"
+#include "catch.hpp"
 TEST_CASE("normal. check", "")
 {
     SECTION("normal.")
